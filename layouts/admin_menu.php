@@ -58,4 +58,14 @@
         <li><a href="daily_sales.php">Daily sales</a> </li>
       </ul>
   </li>
+  <li>
+    <a href="#" class="submenu-toggle">
+      <i class="glyphicon glyphicon-user"></i>
+      <span>Vật tư Management</span>
+    </a>
+    <ul class="nav submenu">
+      <li><a href="group.php">Manage Groups</a> </li>
+      <li><a href="vattu.php">Manage vật tư</a> </li>
+   </ul>
+  </li>
 </ul>
