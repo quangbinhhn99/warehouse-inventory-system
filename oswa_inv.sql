@@ -122,6 +122,62 @@ INSERT INTO `user_groups` (`id`, `group_name`, `group_level`, `group_status`) VA
 (2, 'special', 2, 1),
 (3, 'User', 3, 1);
 
+
+
+
+
+
+
+
+CREATE TABLE IF NOT EXISTS `vattu` (
+  `id` int(11) unsigned NOT NULL,
+  `tenhang` varchar(60) NOT NULL,
+  `vatpham` varchar(50) NOT NULL,
+  `soluong` varchar(255) NOT NULL,
+  `vattu_level` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `vattu` (`id`, `tenhang`, `vatpham`, `soluong`, `vattu_level`) VALUES
+(1, ' Admin User', 'admin', 4, 1),
+(2, 'Special User', 'special', 3, 2),
+(3, 'Default User', 'user', 5,3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_groups`
+--
+
+CREATE TABLE IF NOT EXISTS `vattu_groups` (
+  `id` int(11) NOT NULL,
+  `group_vattu` varchar(150) NOT NULL,
+  `group_level` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_groups`
+--
+
+INSERT INTO `vattu_groups` (`id`, `group_vattu`, `group_level`) VALUES
+(1, 'Admin', 1 ),
+(2, 'special', 2),
+(3, 'User', 3);
+
+
+
+
+
+
+
+
+
+
+
+
 --
 -- Indexes for dumped tables
 --

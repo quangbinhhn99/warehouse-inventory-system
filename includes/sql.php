@@ -150,6 +150,17 @@ function tableExists($table){
   /*--------------------------------------------------------------*/
   /* Function to update the last log in of a user
   /*--------------------------------------------------------------*/
+function find_all_vattu(){
+      global $db;
+      $results = array();
+      $sql = "SELECT u.id,u.tenhang,u.vatpham,u.soluong,u.vattu_level,";
+      $sql .="g.group_vattu ";
+      $sql .="FROM vattu u ";
+      $sql .="LEFT JOIN vattu_groups g ";
+      $sql .="ON g.group_level=u.vattu_level ORDER BY u.tenhang  ASC";
+      $result = find_by_sql($sql);
+      return $result;
+  }
 
  function updateLastLogIn($user_id)
 	{
