@@ -132,6 +132,17 @@ function tableExists($table){
       }
     return $current_user;
   }
+  //   function current_vattu(){
+  //     static $current_vattu;
+  //     global $db;
+  //     if(!$current_vattu){
+  //        if(isset($_SESSION['vattu_id'])):
+  //            $vattu_id = intval($_SESSION['vattu_id']);
+  //            $current_vattu = find_by_id('vattu',$vattu_id);
+  //       endif;
+  //     }
+  //   return $current_vattu;
+  // }
   /*--------------------------------------------------------------*/
   /* Find all user by
   /* Joining users table and user gropus table

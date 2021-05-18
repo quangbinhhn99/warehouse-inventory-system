@@ -64,7 +64,7 @@
       <span>Vật tư Management</span>
     </a>
     <ul class="nav submenu">
-      <li><a href="group.php">Manage Groups</a> </li>
+      <li><a href="vattu_group.php">Manage Groups đơn vị</a> </li>
       <li><a href="vattu.php">Manage vật tư</a> </li>
    </ul>
   </li>
