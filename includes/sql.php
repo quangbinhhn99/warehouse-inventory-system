@@ -164,15 +164,25 @@ function tableExists($table){
 function find_all_vattu(){
       global $db;
       $results = array();
-      $sql = "SELECT u.id,u.tenhang,u.vatpham,u.soluong,u.vattu_level,";
+      $sql = "SELECT u.id,u.tenhang,u.vatpham,u.soluong,u.vattu_level,u.tensp,";
       $sql .="g.group_vattu ";
       $sql .="FROM vattu u ";
       $sql .="LEFT JOIN vattu_groups g ";
-      $sql .="ON g.group_level=u.vattu_level ORDER BY u.tenhang  ASC";
+      $sql .="ON g.group_level=u.vattu_level ORDER BY u.tensp  ASC";
       $result = find_by_sql($sql);
       return $result;
   }
-
+function find_all_kho(){
+      global $db;
+      $results = array();
+      $sql = "SELECT u.id,u.ten_sp,u.soluong_kho,u.vai_kho, u.kho_level,";
+      $sql .="g.group_kho ";
+      $sql .="FROM kho u ";
+      $sql .="LEFT JOIN kho_groups g ";
+      $sql .="ON g.group_level=u.kho_level ORDER BY u.ten_sp ASC";
+      $result = find_by_sql($sql);
+      return $result;
+  }
  function updateLastLogIn($user_id)
 	{
 		global $db;
