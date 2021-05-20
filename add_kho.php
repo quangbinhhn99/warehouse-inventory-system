@@ -3,7 +3,8 @@
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
   page_require_level(1);
-  $groups = find_all('kho_groups');
+  // $groups = find_all('tensp');
+  $tensp = find_all_sp();
 ?>
 <?php
   if(isset($_POST['add_kho'])){
@@ -23,7 +24,7 @@
         $query .=")";
         if($db->query($query)){
           //sucess
-          $session->msg('s',"Them vat tu thanh cong! ");
+          $session->msg('s',"Them kho thanh cong! ");
           redirect('add_kho.php', false);
         } else {
           //failed
@@ -49,9 +50,14 @@
       <div class="panel-body">
         <div class="col-md-6">
           <form method="post" action="add_kho.php">
-            <div class="form-group">
-                <label for="name">Tên sản phẩm</label>
-                <input type="text" class="form-control" name="tensp" placeholder="">
+            
+              <div class="form-group">
+              <label for="tensp">Tên sản phẩm</label>
+                <select class="form-control" name="tensp">
+                  <?php foreach ($tensp as $group ):?>
+                   <option value="<?php echo $group['tensp'];?>"><?php echo ucwords($group['tensp']);?></option>
+                <?php endforeach;?>
+                </select>
             </div>
             <div class="form-group">
                 <label for="name">Số lượng tồn kho</label>

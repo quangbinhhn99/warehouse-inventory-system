@@ -10,6 +10,7 @@
     $session->msg("d","Missing user id.");
     redirect('kho.php');
   }
+  $tensp = find_all_sp();
 ?>
 
 <?php
@@ -26,7 +27,7 @@
             $sql = "UPDATE kho SET soluong_kho ='{$tenhang}', vai_kho ='{$vatpham}',kho_level='1',ten_sp = '{$tensp}' WHERE id='{$db->escape($id)}'";
          $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
-            $session->msg('s',"Cập nhật vật tu thành công! ");
+            $session->msg('s',"Cập nhật kho thành công! ");
             redirect('edit_kho.php?id='.(int)$e_kho['id'], false);
           } else {
             $session->msg('d',' Sorry failed to updated!');
@@ -51,9 +52,13 @@
        </div>
        <div class="panel-body">
           <form method="post" action="edit_kho.php?id=<?php echo (int)$e_kho['id'];?>" class="clearfix">
-            <div class="form-group">
-                  <label for="tensp" class="control-label">Tên sản phẩm</label>
-                  <input type="text" class="form-control" name="tensp" value="<?php echo remove_junk(ucwords($e_kho['ten_sp'])); ?>">
+             <div class="form-group">
+              <label for="tensp">Tên sản phẩm</label>
+                <select class="form-control" name="tensp">
+                  <?php foreach ($tensp as $group ):?>
+                   <option value="<?php echo $group['tensp'];?>"><?php echo ucwords($group['tensp']);?></option>
+                <?php endforeach;?>
+                </select>
             </div>
             <div class="form-group">
                   <label for="tenhang" class="control-label">Số lượng tồn kho</label>
