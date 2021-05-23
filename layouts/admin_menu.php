@@ -68,4 +68,17 @@
       <li><a href="vattu.php">Manage vật tư</a> </li>
    </ul>
   </li>
+  <li>
+    <a href="#" class="submenu-toggle">
+      <i class="glyphicon glyphicon-user"></i>
+      <span>Yêu cầu sản xuất</span>
+    </a>
+    <ul class="nav submenu">
+    <li><a href="yeuCauSanXuat.php">Yêu cầu sản xuất</a> </li>
+      <li><a href="vattu_group.php">Giao hàng</a> </li>
+      <li><a href="vattu.php">Kế hoạch vật tư</a> </li>
+      <li><a href="vattu.php">Lệnh sản xuất</a> </li>
+      <li><a href="vattu.php">Yêu câu mua hàng</a> </li>
+   </ul>
+  </li>
 </ul>
