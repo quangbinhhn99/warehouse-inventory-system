@@ -61,11 +61,26 @@
   <li>
     <a href="#" class="submenu-toggle">
       <i class="glyphicon glyphicon-user"></i>
-      <span>Vật tư Management</span>
+      <span> Công thức Vật tư </span>
     </a>
     <ul class="nav submenu">
-      <li><a href="vattu_group.php">Manage Groups đơn vị</a> </li>
-      <li><a href="vattu.php">Manage vật tư</a> </li>
+     <!--  <li><a href="vattu_group.php">Manage Groups đơn vị</a> </li> -->
+      <li><a href="vattu.php"> vật tư</a> </li>
+   </ul>
+  </li>
+  <!-- <li>
+    <a href="kho.php" >
+      <i class="glyphicon glyphicon-indent-left"></i>
+      <span>Kho</span>
+    </a>
+  </li> -->
+  <li>
+    <a href="#" class="submenu-toggle">
+      <i class="glyphicon glyphicon-user"></i>
+      <span> Kho</span>
+    </a>
+    <ul class="nav submenu">
+      <li><a href="kho.php"> kho</a> </li>
    </ul>
   </li>
   <li>
