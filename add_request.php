@@ -3,26 +3,32 @@
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
   page_require_level(1);
-  $product = find_all('products');
+  $products = find_all('product');
+  
 ?>
 <?php
   if(isset($_POST['add_request'])){
 
-   $req_fields = array('idPro','number','dateStart','dateEnd', 'status', 'note' );
+   $req_fields = array('idPro','number','dateStart','dateEnd', 'status' );
    validate_fields($req_fields);
 
    if(empty($errors)){
            $idPro   = remove_junk($db->escape($_POST['idPro']));
+           $product = find_by_id('product', $idPro);
        $number   = remove_junk($db->escape($_POST['number']));
+       $number_finished = 0;
+       $total_chi = $number*$product['chi'];
+       $total_vai = $number*$product['vai'];
+       $total_cuc = $number*$product['cuc'];
        $dateStart   = ($db->escape($_POST['dateStart']));
        $dateEnd = $db->escape($_POST['dateEnd']);
        $status = $db->escape($_POST['status']);
        $note = $db->escape($_POST['note']);
         $query = "INSERT INTO requestproduct (";
-        $query .="idPro, number,dateStart,dateEnd, status, note";
+        $query .="idPro, number, number_finished, total_vai, total_chi, total_cuc ,dateStart,dateEnd, status, note";
         $query .=") VALUES (";
-        $query .=" '{$idPro}', '{$number}', '{$dateStart}', '{$dateEnd}', '{$status}', '{$note}'";
-        $query .=")";
+        $query .=" '{$idPro}', '{$number}', '{$number_finished}' , '{$total_vai}' , '{$total_chi}', '{$total_cuc}', '{$dateStart}', '{$dateEnd}', '{$status}', '{$note}'";
+        $query .=")"; 
 
         if($db->query($query)){
           
@@ -55,7 +61,7 @@
             <div class="form-group">
                 <label for="name">Tên sản phẩm</label>
                 <select class="form-control" name="idPro">
-                  <?php foreach ($product as $data ):?>
+                  <?php foreach ($products as $data ):?>
                    <option value="<?php echo $data['id'];?>"><?php echo ($data['name']);?></option>
                 <?php endforeach;?>
                 </select>
@@ -84,7 +90,7 @@
             </div>
             <div class="form-group">
                 <label for="note">Ghi chú</label>
-               <textarea name="note" id="note" cols="20" rows="40"></textarea>
+               <textarea name="note" id="note" cols="65" rows="5"></textarea>
             </div>
             <div class="form-group clearfix">
               <button type="submit" name="add_request" class="btn btn-primary">Thêm mới</button>

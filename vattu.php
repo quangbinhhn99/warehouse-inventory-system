@@ -6,7 +6,8 @@
 // Checkin What level user has permission to view this page
  page_require_level(1);
 //pull out all user form database
- $all_vattu = find_all_vattu();
+ $all_vattu = find_all('product');
+ 
 ?>
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
@@ -20,16 +21,17 @@
       <div class="panel-heading clearfix">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Vật tư</span>
+          <span>Công thức sản phẩm</span>
        </strong>
-         <a href="add_vattu.php" class="btn btn-info pull-right">Add vật tư</a>
+         <a href="add_vattu.php" class="btn btn-info pull-right">Thêm mới +</a>
       </div>
      <div class="panel-body">
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
             <th class="text-center" style="width: 50px;">#</th>
-            <th class="text-center" style="width: 10%;">Tên sản phẩm</th>
+            <th class="text-center" style="width: 20%;">Tên sản phẩm</th>
+            <th class="text-center">Phân loại</th>
             <th>Chỉ(cuộn)</th>
             <th>Vải(m)</th>
             
@@ -40,13 +42,17 @@
           </tr>
         </thead>
         <tbody>
-        <?php foreach($all_vattu as $a_vattu): ?>
+        <?php foreach($all_vattu as $a_vattu): 
+          $loaiSP = find_by_id('categories', $a_vattu['idLoai']);
+          ?>
+
           <tr>
            <td class="text-center"><?php echo count_id();?></td>
-            <td><?php echo remove_junk(ucwords($a_vattu['tensp']))?></td>
-           <td><?php echo remove_junk(ucwords($a_vattu['tenhang']))?></td>
-           <td><?php echo remove_junk(ucwords($a_vattu['vatpham']))?></td>
-           <td><?php echo remove_junk(ucwords($a_vattu['soluong']))?></td>
+            <td class="text-center"><?php echo remove_junk(ucwords($a_vattu['name']))?></td>
+            <td class="text-center"><?php echo remove_junk(ucwords($loaiSP['name']))?></td>
+           <td><?php echo remove_junk(ucwords($a_vattu['chi']))?></td>
+           <td><?php echo remove_junk(ucwords($a_vattu['vai']))?></td>
+           <td><?php echo remove_junk(ucwords($a_vattu['cuc']))?></td>
 
         <!--    <td class="text-center"><?php echo remove_junk(ucwords($a_vattu['group_vattu']))?></td> -->
            <!-- <td class="text-center">

@@ -6,30 +6,32 @@
 ?>
 <?php
   $e_group = find_by_id('requestproduct',(int)$_GET['id']);
-  $product = find_by_id('products', $e_group['idPro']);
-  $products = find_all('products');
-  if(!$e_group){
-    $session->msg("d","Missing Group id.");
-    redirect('yeuCauSanXuat.php');
-  }
+  $product = find_by_id('product', $e_group['idPro']);
+  $products = find_all('product');
+ 
 ?>
 <?php
   if(isset($_POST['update'])){
 
-   $req_fields = array('idPro','number','dateStart','dateEnd', 'status', 'note' );
+   $req_fields = array('idPro','number','number_finished', 'status', 'note' );
    validate_fields($req_fields);
    if(empty($errors)){
     $idPro   = remove_junk($db->escape($_POST['idPro']));
+    $pro = find_by_id('product', $idPro);
     $number   = (int)($db->escape($_POST['number']));
-    $dateStart   = ($db->escape($_POST['dateStart']));
-    $dateEnd = $db->escape($_POST['dateEnd']);
+    $number_finished = (int)($db->escape($_POST['number']));
+    $total_vai = $number*$pro['vai'];
+    $total_chi = $number*$pro['chi'];
+    $total_cuc = $number*$pro['cuc'];
     $status = $db->escape($_POST['status']);
     $note = $db->escape($_POST['note']);
         $query  = "UPDATE requestproduct SET ";
         $query .= "idPro='{$idPro}',
-                number={$number},
-                dateStart='{$dateStart}',
-                dateEnd = '{$dateEnd}',
+                number='{$number}',
+               number_finished='{$number_finished}',
+               total_vai='{$total_vai}',
+               total_chi='{$total_chi}',
+               total_cuc='{$total_cuc}',
                 status = '{$status}',
                 note = '{$note}' ";
         $query .= "WHERE ID='{$db->escape($e_group['id'])}'";
@@ -65,16 +67,24 @@
                 </select>        
         </div>
         <div class="form-group">
-              <label for="number" class="control-label">Số lượng</label>
+              <label for="number" class="control-label">Số lượng đặt</label>
               <input type="number" class="form-control" name="number" id="number" value="<?php echo (int)$e_group['number']; ?>">
         </div>
         <div class="form-group">
-              <label class="control-label">Ngày bắt đầu</label>
-              <input type="date" class="form-control" name="dateStart" value="<?php echo (int)$e_group['dateStart']; ?>">
+              <label for="number" class="control-label">Số lượng hoàn thành</label>
+              <input type="number" class="form-control" name="number_finished" id="number" value="<?php echo (int)$e_group['number_finished']; ?>">
         </div>
         <div class="form-group">
-              <label class="control-label">Ngày kết thúc</label>
-              <input type="date" class="form-control" name="dateEnd" value="<?php echo (int)$e_group['dateEnd']; ?>">
+              <label for="number" class="control-label">Vải (m):</label>
+              <input readonly class="form-control" value="<?php echo (int)$e_group['total_vai']; ?>">
+        </div>
+        <div class="form-group">
+              <label for="number" class="control-label">Chỉ (cuộn):</label>
+              <input readonly class="form-control" value="<?php echo (int)$e_group['total_chi']; ?>">
+        </div>
+        <div class="form-group">
+              <label for="number" class="control-label">Cúc (chiếc):</label>
+              <input readonly value="<?php echo (int)$e_group['total_cuc']; ?>">
         </div>
       
         <div class="form-group">
@@ -89,7 +99,7 @@
         </div>
           <div class="form-group">
                 <label for="note">Ghi chú</label><br>
-               <textarea name="note" id="note" cols="100" rows="5"><?php echo $e_group['note']; ?></textarea>
+               <textarea name="note" id="note" cols="110" rows="5"><?php echo $e_group['note']; ?></textarea>
             </div>
             <div class="form-group clearfix">
                 <button type="submit" name="update" class="btn btn-info">Cập nhật</button>

@@ -6,7 +6,7 @@
 // Checkin What level user has permission to view this page
  page_require_level(1);
 //pull out all user form database
- $all_kho = find_all_kho();
+ $all_kho = find_all('kho');
 ?>
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
@@ -28,31 +28,21 @@
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
-            <th class="text-center" style="width: 50px;">#</th>
-            <th class="text-center" style="width: 10%;">Tên sản phẩm</th>
+            <th class="text-center" >#</th>
+            <th class="text-center" >Tên sản phẩm</th>
             <th>Số lượng tồn kho</th>
-            <th>Vải tồn kho(m)</th>
-            
-            <th class="text-center" style="width: 100px;">Actions</th>
+            <th class="text-center" >Actions</th>
           </tr>
         </thead>
         <tbody>
-        <?php foreach($all_kho as $a_kho): ?>
+        <?php foreach($all_kho as $a_kho): 
+        $product = find_by_id('product',$a_kho['idSP'] )
+          ?>
           <tr>
            <td class="text-center"><?php echo count_id();?></td>
-            <td><?php echo remove_junk(ucwords($a_kho['ten_sp']))?></td>
-                   <td><?php echo remove_junk(ucwords($a_kho['soluong_kho']))?></td>
-           <td><?php echo remove_junk(ucwords($a_kho['vai_kho']))?></td>
-    
+            <td><?php echo remove_junk(ucwords($product['name']))?></td>
+                   <td><?php echo remove_junk(ucwords($a_kho['inventory']))?></td>
 
-        <!--    <td class="text-center"><?php echo remove_junk(ucwords($a_vattu['group_vattu']))?></td> -->
-           <!-- <td class="text-center">
-           <?php if($a_vattu['status'] === '1'): ?>
-            <span class="label label-success"><?php echo "Active"; ?></span>
-          <?php else: ?>
-            <span class="label label-danger"><?php echo "Deactive"; ?></span>
-          <?php endif;?>
-           </td> -->
            <td class="text-center">
              <div class="btn-group">
                 <a href="edit_kho.php?id=<?php echo (int)$a_kho['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">

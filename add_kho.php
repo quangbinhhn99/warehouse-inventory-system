@@ -3,7 +3,7 @@
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
   page_require_level(1);
-  // $groups = find_all('tensp');
+  $group = find_all('product');
   $tensp = find_all_sp();
 ?>
 <?php
@@ -54,18 +54,14 @@
               <div class="form-group">
               <label for="tensp">Tên sản phẩm</label>
                 <select class="form-control" name="tensp">
-                  <?php foreach ($tensp as $group ):?>
-                   <option value="<?php echo $group['tensp'];?>"><?php echo ucwords($group['tensp']);?></option>
+                  <?php foreach ($group as $data ):?>
+                   <option value="<?php echo $data['name'];?>"><?php echo ucwords($data['name']);?></option>
                 <?php endforeach;?>
                 </select>
             </div>
             <div class="form-group">
                 <label for="name">Số lượng tồn kho</label>
                 <input type="text" class="form-control" name="full-name" placeholder="">
-            </div>
-            <div class="form-group">
-                <label for="username">Vải tồn kho(m)</label>
-                <input type="text" class="form-control" name="username" placeholder="">
             </div>
            
             <div class="form-group clearfix">
