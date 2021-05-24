@@ -16,15 +16,18 @@
 <?php
 //Update User basic info
   if(isset($_POST['update'])) {
-    $req_fields = array('name','username','level');
+    $req_fields = array('name','username','level','so_cmt','que_quan','salary','status');
     validate_fields($req_fields);
     if(empty($errors)){
              $id = (int)$e_user['id'];
            $name = remove_junk($db->escape($_POST['name']));
        $username = remove_junk($db->escape($_POST['username']));
+       $so_cmt = (int)$db->escape($_POST['so_cmt']);
+       $que_quan = remove_junk($db->escape($_POST['que_quan']));
+       $salary = remove_junk($db->escape($_POST['salary']));
           $level = (int)$db->escape($_POST['level']);
        $status   = remove_junk($db->escape($_POST['status']));
-            $sql = "UPDATE users SET name ='{$name}', username ='{$username}',user_level='{$level}',status='{$status}' WHERE id='{$db->escape($id)}'";
+            $sql = "UPDATE users SET name ='{$name}', username ='{$username}',user_level='{$level}',status='{$status}',so_cmt='{$so_cmt}',que_quan='{$que_quan}',salary='{$salary}' WHERE id='{$db->escape($id)}'";
          $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
             $session->msg('s',"Acount Updated ");
@@ -39,7 +42,7 @@
     }
   }
 ?>
-<?php
+<!-- <?php
 // Update user password
 if(isset($_POST['update-pass'])) {
   $req_fields = array('password');
@@ -63,16 +66,16 @@ if(isset($_POST['update-pass'])) {
   }
 }
 
-?>
+?> -->
 <?php include_once('layouts/header.php'); ?>
  <div class="row">
    <div class="col-md-12"> <?php echo display_msg($msg); ?> </div>
-  <div class="col-md-6">
+  <div class="col-md-12">
      <div class="panel panel-default">
        <div class="panel-heading">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          Update <?php echo remove_junk(ucwords($e_user['name'])); ?> Account
+          Cập nhật tài khoản: <?php echo remove_junk(ucwords($e_user['name'])); ?>
         </strong>
        </div>
        <div class="panel-body">
@@ -94,6 +97,18 @@ if(isset($_POST['update-pass'])) {
                 </select>
             </div>
             <div class="form-group">
+                  <label for="so_cmt" class="control-label">Số cmt</label>
+                  <input type="text" class="form-control" name="so_cmt" value="<?php echo remove_junk(ucwords($e_user['so_cmt'])); ?>">
+            </div>
+            <div class="form-group">
+                  <label for="que_quan" class="control-label">Quê quán</label>
+                  <input type="text" class="form-control" name="que_quan" value="<?php echo remove_junk(ucwords($e_user['que_quan'])); ?>">
+            </div>
+            <div class="form-group">
+                  <label for="salary" class="control-label">Lương</label>
+                  <input type="text" class="form-control" name="salary" value="<?php echo remove_junk(ucwords($e_user['salary'])); ?>">
+            </div>
+            <div class="form-group">
               <label for="status">Status</label>
                 <select class="form-control" name="status">
                   <option <?php if($e_user['status'] === '1') echo 'selected="selected"';?>value="1">Active</option>
@@ -108,7 +123,7 @@ if(isset($_POST['update-pass'])) {
      </div>
   </div>
   <!-- Change password form -->
-  <div class="col-md-6">
+  <!-- <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">
         <strong>
@@ -128,7 +143,7 @@ if(isset($_POST['update-pass'])) {
         </form>
       </div>
     </div>
-  </div>
+  </div> -->
 
  </div>
 <?php include_once('layouts/footer.php'); ?>

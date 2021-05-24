@@ -6,13 +6,13 @@
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
   <div class="col-md-12">
-    <?php echo display_msg($msg); ?>
+    <!-- <?php echo display_msg($msg); ?> -->
   </div>
  <div class="col-md-12">
     <div class="panel">
       <div class="jumbotron text-center">
-         <h1>This is your new home page!</h1>
-         <p>Just browes around and find out what page you can access.</p>
+         <h1>Phát triển hệ thống thông tin quản lý!</h1>
+         <h2>Sản xuất quần áo.</h2>
       </div>
     </div>
  </div>

@@ -8,19 +8,22 @@
 <?php
   if(isset($_POST['add_user'])){
 
-   $req_fields = array('full-name','username','password','level' );
+   $req_fields = array('full-name','username','password','level','so_cmt','salary','que_quan' );
    validate_fields($req_fields);
 
    if(empty($errors)){
            $name   = remove_junk($db->escape($_POST['full-name']));
        $username   = remove_junk($db->escape($_POST['username']));
+        $so_cmt   = remove_junk($db->escape($_POST['so_cmt']));
+         $salary   = remove_junk($db->escape($_POST['salary']));
+          $que_quan   = remove_junk($db->escape($_POST['que_quan']));
        $password   = remove_junk($db->escape($_POST['password']));
        $user_level = (int)$db->escape($_POST['level']);
        $password = sha1($password);
         $query = "INSERT INTO users (";
-        $query .="name,username,password,user_level,status";
+        $query .="name,username,password,user_level,status,so_cmt,salary,que_quan";
         $query .=") VALUES (";
-        $query .=" '{$name}', '{$username}', '{$password}', '{$user_level}','1'";
+        $query .=" '{$name}', '{$username}', '{$password}', '{$user_level}','1','{$so_cmt}','{$salary}','{$que_quan}'";
         $query .=")";
         if($db->query($query)){
           //sucess
@@ -44,7 +47,7 @@
       <div class="panel-heading">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Add New User</span>
+          <span>Add tài khoản</span>
        </strong>
       </div>
       <div class="panel-body">
@@ -61,6 +64,18 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" name ="password"  placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="so_cmt">Số cmt</label>
+                <input type="text" class="form-control" name ="so_cmt"  placeholder="số cmt">
+            </div>
+            <div class="form-group">
+                <label for="salary">Lương</label>
+                <input type="text" class="form-control" name ="salary"  placeholder="Lương">
+            </div>
+            <div class="form-group">
+                <label for="que_quan">Password</label>
+                <input type="text" class="form-control" name ="que_quan"  placeholder="Quê Quán">
             </div>
             <div class="form-group">
               <label for="level">User Role</label>

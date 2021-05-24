@@ -20,9 +20,9 @@
       <div class="panel-heading clearfix">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Users</span>
+          <span>Tài khoản</span>
        </strong>
-         <a href="add_user.php" class="btn btn-info pull-right">Add New User</a>
+         <a href="add_user.php" class="btn btn-info pull-right">Add tài khoản</a>
       </div>
      <div class="panel-body">
       <table class="table table-bordered table-striped">
@@ -32,7 +32,10 @@
             <th>Name </th>
             <th>Username</th>
             <th class="text-center" style="width: 15%;">User Role</th>
-            <th class="text-center" style="width: 10%;">Status</th>
+            <th class="text-center" style="width: 15%;">Số cmt</th>
+            <th class="text-center" style="width: 15%;">Quê quán</th>
+            <th class="text-center" style="width: 15%;">Lương</th>
+            <th class="text-center" style="width: 10%;">Trạng thái</th>
             <th style="width: 20%;">Last Login</th>
             <th class="text-center" style="width: 100px;">Actions</th>
           </tr>
@@ -44,6 +47,9 @@
            <td><?php echo remove_junk(ucwords($a_user['name']))?></td>
            <td><?php echo remove_junk(ucwords($a_user['username']))?></td>
            <td class="text-center"><?php echo remove_junk(ucwords($a_user['group_name']))?></td>
+           <td><?php echo remove_junk(ucwords($a_user['so_cmt']))?></td>
+           <td><?php echo remove_junk(ucwords($a_user['que_quan']))?></td>
+           <td><?php echo remove_junk(ucwords($a_user['salary']))?> VNĐ</td>
            <td class="text-center">
            <?php if($a_user['status'] === '1'): ?>
             <span class="label label-success"><?php echo "Active"; ?></span>
