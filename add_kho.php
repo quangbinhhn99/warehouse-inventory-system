@@ -9,18 +9,17 @@
 <?php
   if(isset($_POST['add_kho'])){
 
-   $req_fields = array('tensp','full-name','username');
+   $req_fields = array('tensp','full-name');
    validate_fields($req_fields);
 
    if(empty($errors)){
       $tensp = remove_junk($db->escape($_POST['tensp']));
       $tenhang   = remove_junk($db->escape($_POST['full-name']));
-       $vatpham   = remove_junk($db->escape($_POST['username']));
       
         $query = "INSERT INTO kho (";
-        $query .="ten_sp,soluong_kho,vai_kho,kho_level";
+        $query .="idSP,inventory";
         $query .=") VALUES (";
-        $query .=" '{$tensp}', '{$tenhang}', '{$vatpham}',1";
+        $query .=" '{$tensp}', '{$tenhang}'";
         $query .=")";
         if($db->query($query)){
           //sucess
@@ -55,7 +54,7 @@
               <label for="tensp">Tên sản phẩm</label>
                 <select class="form-control" name="tensp">
                   <?php foreach ($group as $data ):?>
-                   <option value="<?php echo $data['name'];?>"><?php echo ucwords($data['name']);?></option>
+                   <option value="<?php echo $data['id'];?>"><?php echo ucwords($data['name']);?></option>
                 <?php endforeach;?>
                 </select>
             </div>

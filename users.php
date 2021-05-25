@@ -6,7 +6,13 @@
 // Checkin What level user has permission to view this page
  page_require_level(1);
 //pull out all user form database
- $all_users = find_all_user();
+if (isset($_POST['search'])) {
+    $key = addslashes('%'.$_POST['name'].'%');
+    $keys = $_POST['name'];
+    $all_users = find_product_by_user($key);
+            
+}
+  else $all_users = find_all_user();
 ?>
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
@@ -14,6 +20,20 @@
      <?php echo display_msg($msg); ?>
    </div>
 </div>
+<div class="row">
+  <div class="col-md-12">
+    <form action="" method="POST" accept-charset="utf-8">
+  
+       <div class="input-group">
+            <input type="text" value="<?php if(isset($key)) { echo $keys; } ?>" name="name" class="form-control" placeholder="Nhập tên nhân viên...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" name="search" type="submit">Tìm kiếm</button>
+            </span>
+          </div><!-- /input-group -->
+      </div>
+    </form>
+</div>
+<br>
 <div class="row">
   <div class="col-md-12">
     <div class="panel panel-default">

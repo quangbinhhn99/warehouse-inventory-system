@@ -139,6 +139,13 @@ function tableExists($table){
       $result = find_by_sql($sql);
       return $result;
   }
+   function find_all_khos(){
+      global $db;
+      $results = array();
+      $sql = "SELECT * FROM product";
+      $result = find_by_sql($sql);
+      return $result;
+  }
   /*--------------------------------------------------------------*/
   /* Find all user by
   /* Joining users table and user gropus table
@@ -251,6 +258,22 @@ function find_all_kho(){
   /* Function for Finding all product name
   /* Request coming from ajax.php for auto suggest
   /*--------------------------------------------------------------*/
+
+    function find_product_by_user($key){
+     global $db;
+     $name = remove_junk($db->escape($key));
+     $sql = "SELECT * FROM users, user_groups WHERE users.user_level = user_groups.group_level AND name like '%$name%'";
+     $result = find_by_sql($sql);
+     return $result;
+   }
+   function find_product_by_kho($keys){
+     global $db;
+     $name = remove_junk($db->escape($keys));
+     $sql = "SELECT * FROM kho, product WHERE kho.idSP = product.idLoai AND name like '%$name%'";
+     $result = find_by_sql($sql);
+     return $result;
+   }
+
 
    function find_product_by_title($product_name){
      global $db;
