@@ -19,7 +19,7 @@
         $query = "INSERT INTO kho (";
         $query .="name,soluong_kho,vai_kho,kho_level";
         $query .=") VALUES (";
-        $query .=" '{$tensp}', '{$tenhang}', '{$vatpham}',1";
+        $query .=" '{$tensp}', '{$tenhang}'";
         $query .=")";
         if($db->query($query)){
           //sucess
@@ -54,7 +54,7 @@
               <label for="tensp">Tên sản phẩm</label>
                 <select class="form-control" name="name">
                   <?php foreach ($group as $data ):?>
-                   <option value="<?php echo $data['name'];?>"><?php echo ucwords($data['name']);?></option>
+                   <option value="<?php echo $data['id'];?>"><?php echo ucwords($data['name']);?></option>
                 <?php endforeach;?>
                 </select>
             </div>

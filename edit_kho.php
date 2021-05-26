@@ -10,21 +10,20 @@
     $session->msg("d","Missing user id.");
     redirect('kho.php');
   }
-  $tensp = find_all_sp();
+  $tensp = find_all_khos();
 ?>
 
 <?php
 //Update User basic info
   if(isset($_POST['update_kho'])) {
-    $req_fields = array('tensp','tenhang','vatpham');
+    $req_fields = array('tensp','tenhang');
     validate_fields($req_fields);
     if(empty($errors)){
              $id = (int)$e_kho['id'];
               $tensp = remove_junk($db->escape($_POST['tensp']));
            $tenhang = remove_junk($db->escape($_POST['tenhang']));
-       $vatpham = remove_junk($db->escape($_POST['vatpham']));
          
-            $sql = "UPDATE kho SET soluong_kho ='{$tenhang}', vai_kho ='{$vatpham}',kho_level='1',ten_sp = '{$tensp}' WHERE id='{$db->escape($id)}'";
+            $sql = "UPDATE kho SET idSP ='{$tensp}', inventory ='{$tenhang}' WHERE id='{$db->escape($id)}'";
          $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
             $session->msg('s',"Cập nhật kho thành công! ");
@@ -56,18 +55,15 @@
               <label for="tensp">Tên sản phẩm</label>
                 <select class="form-control" name="tensp">
                   <?php foreach ($tensp as $group ):?>
-                   <option value="<?php echo $group['tensp'];?>"><?php echo ucwords($group['tensp']);?></option>
+                   <option value="<?php echo $group['id'];?>"><?php echo ucwords($group['name']);?></option>
                 <?php endforeach;?>
                 </select>
             </div>
             <div class="form-group">
                   <label for="tenhang" class="control-label">Số lượng tồn kho</label>
-                  <input type="name" class="form-control" name="tenhang" value="<?php echo remove_junk(ucwords($e_kho['soluong_kho'])); ?>">
+                  <input type="name" class="form-control" name="tenhang" value="<?php echo remove_junk(ucwords($e_kho['inventory'])); ?>">
             </div>
-            <div class="form-group">
-                  <label for="vatpham" class="control-label">Vải tồn kho(m)</label>
-                  <input type="text" class="form-control" name="vatpham" value="<?php echo remove_junk(ucwords($e_kho['vai_kho'])); ?>">
-            </div>
+           
             
             <div class="form-group clearfix">
                     <button type="submit" name="update_kho" class="btn btn-info">Update</button>

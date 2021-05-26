@@ -5,7 +5,12 @@
 <?php
 // Checkin What level user has permission to view this page
  page_require_level(1);
-//pull out all user form database
+//  if (isset($_POST['searchs'])) {
+//     $key = addslashes('%'.$_POST['names'].'%');
+//     $keys = $_POST['names'];
+//     $all_kho = find_product_by_kho($key);
+            
+// }
  $all_kho = find_all('kho');
 ?>
 <?php include_once('layouts/header.php'); ?>
@@ -14,6 +19,19 @@
      <?php echo display_msg($msg); ?>
    </div>
 </div>
+<!-- <div class="row">
+  <div class="col-md-12">
+    <form action="" method="POST" accept-charset="utf-8">
+  
+       <div class="input-group">
+            <input type="text" value="<?php if(isset($key)) { echo $keys; } ?>" name="names" class="form-control" placeholder="Nhập tên sản phẩm..">
+            <span class="input-group-btn">
+                <button class="btn btn-default" name="searchs" type="submit">Tìm kiếm</button>
+            </span>
+          </div>
+      </div>
+    </form>
+</div> -->
 <div class="row">
   <div class="col-md-12">
     <div class="panel panel-default">
