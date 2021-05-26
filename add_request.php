@@ -26,9 +26,9 @@ if (isset($_POST['add_request'])) {
     $status = $db->escape($_POST['status']);
     $note = $db->escape($_POST['note']);
     $query = "INSERT INTO requestproduct (";
-    $query .= "sku, idPro, number, number_finished, total_vai, total_chi, total_cuc ,dateStart,dateEnd, status, note";
+    $query .= "sku, idPro, number_datHang, number, number_finished, total_vai, total_chi, total_cuc ,dateStart,dateEnd, status, note";
     $query .= ") VALUES (";
-    $query .= "'{$sku}', '{$idPro}', '{$number}', '{$number_finished}' , '{$total_vai}' , '{$total_chi}', '{$total_cuc}', '{$dateStart}', '{$dateEnd}', '{$status}', '{$note}'";
+    $query .= "'{$sku}', '{$idPro}', '{$number}','{$number}', '{$number_finished}' , '{$total_vai}' , '{$total_chi}', '{$total_cuc}', '{$dateStart}', '{$dateEnd}', '{$status}', '{$note}'";
     $query .= ")";
 
     if ($db->query($query)) {

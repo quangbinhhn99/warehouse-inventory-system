@@ -13,10 +13,10 @@ $c_user          = count_by_id('users');
 $products_sold = 0;
 $recent_products = 0;
 $recent_sales = 0;
-$stt1 = count_by_status('1');
-$stt2 = count_by_status('2');
-$stt3 = count_by_status('3');
-$stt4 = count_by_status('4');
+$stt1 = count_by_status('0');
+$stt2 = count_by_status('1');
+$stt3 = count_by_status('2');
+$stt4 = count_by_status('3');
 
 ?>
 <?php include_once('layouts/header.php'); ?>

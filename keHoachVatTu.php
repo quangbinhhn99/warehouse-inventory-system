@@ -25,11 +25,21 @@ $id = $_GET['id'];
            
               <tr>
                 <th  class="text-center" style="width: 40%;"> Mã yêu cầu</th>
-                <td  class="text-center"> <?php echo remove_junk($request['id']); ?></td>
+                <td  class="text-center"> <?php echo remove_junk($request['sku']); ?></td>
               </tr>
               <tr>
                 <th  class="text-center"> Sản phẩm </th>
                 <td class="text-center"> <?php echo remove_junk($product['name']); ?></td>
+
+              </tr>
+              <tr>
+                <th  class="text-center"> Số lượng đặt </th>
+                <td class="text-center"> <?php echo remove_junk($request['number_datHang']); ?></td>
+
+              </tr>
+              <tr>
+                <th  class="text-center"> Số lượng cần sử dụng vật tư </th>
+                <td class="text-center"> <?php echo remove_junk($request['number']); ?></td>
 
               </tr>
               <tr>

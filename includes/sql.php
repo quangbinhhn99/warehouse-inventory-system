@@ -54,6 +54,16 @@ function find_by_name_product($name){
   return $result;
 }
 
+function check_product_kho($idSP){
+  global $db;
+  $sql = $db->query("SELECT * FROM kho WHERE idSP ='{$db->escape($idSP)}' LIMIT 1");
+  if($result = $db->fetch_assoc($sql))
+    return $result;
+  else
+    return null;
+}
+
+
 
 /*--------------------------------------------------------------*/
 /* Function for Delete data from table by id
@@ -84,6 +94,14 @@ function count_by_id($table){
   }
 }
 
+function count_kho($idSP){
+  global $db;
+ 
+    $sql    = "select COUNT(id) as total FROM kho WHERE idSP=" .$db->escape($idSP);
+    $result = $db->query($sql);
+     return($db->fetch_assoc($result));
+
+}
 
 function total_product($table){
   global $db;
@@ -396,20 +414,11 @@ function find_recent_sale_added($limit){
 /*--------------------------------------------------------------*/
 /* Function for Generate sales report by two dates
 /*--------------------------------------------------------------*/
-function find_sale_by_dates($start_date,$end_date){
+function find_by_date($start_date,$end_date){
   global $db;
   $start_date  = date("Y-m-d", strtotime($start_date));
   $end_date    = date("Y-m-d", strtotime($end_date));
-  $sql  = "SELECT s.date, p.name,p.sale_price,p.buy_price,";
-  $sql .= "COUNT(s.product_id) AS total_records,";
-  $sql .= "SUM(s.qty) AS total_sales,";
-  $sql .= "SUM(p.sale_price * s.qty) AS total_saleing_price,";
-  $sql .= "SUM(p.buy_price * s.qty) AS total_buying_price ";
-  $sql .= "FROM sales s ";
-  $sql .= "LEFT JOIN products p ON s.product_id = p.id";
-  $sql .= " WHERE s.date BETWEEN '{$start_date}' AND '{$end_date}'";
-  $sql .= " GROUP BY DATE(s.date),p.name";
-  $sql .= " ORDER BY DATE(s.date) DESC";
+  $sql  = "SELECT * FROM phieunhap WHERE date BETWEEN '{$start_date}' AND '{$end_date}' ";
   return $db->query($sql);
 }
 /*--------------------------------------------------------------*/

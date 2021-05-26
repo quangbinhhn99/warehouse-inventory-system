@@ -1,9 +1,14 @@
 <ul>
   <li>
-    <a href="home.php">
+    <a  href="#" class="submenu-toggle">
       <i class="glyphicon glyphicon-home"></i>
-      <span>Dashboard</span>
+      <span>Báo cáo</span>
     </a>
+    <ul class="nav submenu">
+      <li><a href="home.php">Báo cáo thống kê</a> </li>
+      <li><a href="baoCaoNhapKho.php">Báo cáo nhập kho</a> </li>
+    </ul>
+
   </li>
   <li>
     <a href="#" class="submenu-toggle">
@@ -23,17 +28,8 @@
       <span>Meadias</span>
     </a>
   </li> -->
-  <li>
-    <a href="#" class="submenu-toggle">
-      <i class="glyphicon glyphicon-th-list"></i>
-      <span>Bán hàng</span>
-    </a>
-    <ul class="nav submenu">
-      <li><a href="sales.php">Manage Sales</a> </li>
-      <li><a href="add_sale.php">Add Sale</a> </li>
-    </ul>
-  </li>
-  <li>
+  
+  <!-- <li>
     <a href="#" class="submenu-toggle">
       <i class="glyphicon glyphicon-signal"></i>
       <span>Báo cáo</span>
@@ -43,7 +39,7 @@
       <li><a href="monthly_sales.php">Monthly sales</a></li>
       <li><a href="daily_sales.php">Daily sales</a> </li>
     </ul>
-  </li>
+  </li> -->
   <li>
   <a href="#" class="submenu-toggle">
       <i class="glyphicon glyphicon-th-list"></i>
@@ -71,13 +67,16 @@
       <span> Kho</span>
     </a>
     <ul class="nav submenu">
-      <li><a href="kho.php"> Kho</a> </li>
+      <li><a href="kho.php"> Kho sản phẩm</a> </li>
+    </ul>
+    <ul class="nav submenu">
+      <li><a href="vatlieu.php"> Kho vật tư</a> </li>
     </ul>
     <ul class="nav submenu">
       <li><a href="supplier.php">Nhà cung cấp</a> </li>
     </ul>
     <ul class="nav submenu">
-      <li><a href="nhapXuat.php">Phiếu nhập/xuất</a> </li>
+      <li><a href="nhapXuat.php">Phiếu nhập</a> </li>
     </ul>
   </li>
   <li>

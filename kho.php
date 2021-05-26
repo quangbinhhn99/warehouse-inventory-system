@@ -38,7 +38,7 @@
       <div class="panel-heading clearfix">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Kho</span>
+          <span>Kho sản phẩm</span>
        </strong>
          <a href="add_kho.php" class="btn btn-info pull-right">Add kho</a>
       </div>

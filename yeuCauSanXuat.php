@@ -53,7 +53,8 @@ if(isset($_POST['search'])){
               <th class="text-center"> Trạng thái </th>
               <th class="text-center"> Ghi chú </th>
               <th class="text-center"> Kế hoạch vật tư </th>
-              <th class="text-center"> Lệnh sản xuất </th>
+              <th class="text-center"> Lệnh sản xuất </th>        
+              <th class="text-center"> Phân bổ </th>
               <th class="text-center" style="width: 100px;"> </th>
             </tr>
           </thead>
@@ -68,7 +69,7 @@ if(isset($_POST['search'])){
                                         $i++ ?></td>
                 <td class="text-center"> <?php echo remove_junk($data['sku']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($product['name']); ?></td>
-                <td class="text-center"> <?php echo remove_junk($data['number']); ?></td>
+                <td class="text-center"> <?php echo remove_junk($data['number_datHang']); ?></td>
                 <td class="text-center"> <?php echo read_date($data['dateStart']); ?></td>
                 <td class="text-center"> <?php echo read_date($data['dateEnd']); ?></td>
                 <td class="text-center"> <?php
@@ -97,12 +98,21 @@ if(isset($_POST['search'])){
                 </td>
                 <td class="text-center">
                   <div class="btn-group">
+                    <a href="phanBo.php?id=<?php echo (int)$data['id']; ?>" class="btn btn-xs btn-success" data-toggle="tooltip" title="detail">
+                      <i class="glyphicon glyphicon-pencil"></i>
+                    </a>
+
+                  </div>
+                </td>
+                <td class="text-center">
+                  <div class="btn-group">
                     <a href="edit_request.php?id=<?php echo (int)$data['id']; ?>" class="btn btn-info btn-xs" title="Edit" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-edit"></span>
                     </a>
                     <a href="delete_request.php?id=<?php echo (int)$data['id']; ?>" class="btn btn-danger btn-xs" title="Delete" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>
+                    
                   </div>
                 </td>
               </tr>

@@ -4,6 +4,7 @@ require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 //    page_require_level(2);
 $request = find_all('requestproduct');
+$vatlieu = find_all('vatlieu');
 
 ?>
 <?php include_once('layouts/header.php'); ?>
@@ -26,7 +27,8 @@ $request = find_all('requestproduct');
               <th class="text-center" style="width: 50px;">#</th>
               <th class="text-center" style="width: 10%;"> Mã đơn</th>
               <th class="text-center"> Sản phẩm </th>
-              <th class="text-center" style="width: 10%;"> Số lượng </th>
+              <th class="text-center" style="width: 10%;"> Số lượng đặt</th>
+              <th class="text-center" style="width: 10%;"> Số lượng cần làm</th>
               <th class="text-center"> Tổng vải (m)</th>
               <th class="text-center"> Tổng chỉ (cuộn) </th>
               <th class="text-center"> Tổng cúc (cái) </th>
@@ -50,6 +52,7 @@ $request = find_all('requestproduct');
                                         $i++ ?></td>
                 <td class="text-center"> <?php echo remove_junk($data['sku']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($product['name']); ?></td>
+                <td class="text-center"> <?php echo remove_junk($data['number_datHang']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($data['number']); ?></td>
                 <td class="text-center"> <?php echo ($data['total_vai']);  $sum_vai += $data['total_vai'];?></td>
                 <td class="text-center"> <?php echo ($data['total_chi']); $sum_chi += $data['total_chi']; ?></td>
@@ -58,10 +61,17 @@ $request = find_all('requestproduct');
               </tr>
             <?php endforeach; ?>
             <tr>
-            <th colspan="4"  class="text-center">TỔNG:</th>
+            <th colspan="5"  class="text-center">TỔNG:</th>
             <td  class="text-center"><?php echo $sum_vai  ." (m)"; ?></td>
             <td  class="text-center"><?php echo $sum_chi ." (cuộn)"; ?></td>
             <td  class="text-center"><?php echo $sum_cuc . " (cái)"; ?></td>
+            </tr>
+
+            <tr>
+            <th colspan="5"  class="text-center">Cần thêm:</th>
+            <td  class="text-center"><?php if($vatlieu[0]['total_vai'] < $sum_vai)  echo ($sum_vai - $vatlieu[0]['total_vai'])  ." (m)"; ?></td>
+            <td  class="text-center"><?php if($vatlieu[0]['total_chi'] < $sum_chi)  echo ($sum_chi - $vatlieu[0]['total_chi']) ." (cuộn)"; ?></td>
+            <td  class="text-center"><?php if($vatlieu[0]['total_cuc'] < $sum_cuc)  echo ($sum_cuc - $vatlieu[0]['total_cuc']) . " (cái)"; ?></td>
             </tr>
            
           </tbody>

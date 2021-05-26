@@ -1,98 +1,67 @@
 <?php
-  $page_title = 'All categories';
+  $page_title = 'All User';
   require_once('includes/load.php');
-  // Checkin What level user has permission to view this page
-  page_require_level(1);
-  
-  $all_vattu = find_all('vattu');
 ?>
 <?php
- if(isset($_POST['add_cat'])){
-   $req_field = array('name');
-   validate_fields($req_field);
-   $name = remove_junk($db->escape($_POST['name']));
-   if(empty($errors)){
-      $sql  = "INSERT INTO vattu (name)";
-      $sql .= " VALUES ('{$name}')";
-      if($db->query($sql)){
-        $session->msg("s", "Thêm mới vật tư thành công!");
-        redirect('vatlieu.php',false);
-      } else {
-        $session->msg("d", "Sorry Failed to insert.");
-        redirect('vatlieu.php',false);
-      }
-   } else {
-     $session->msg("d", $errors);
-     redirect('vatlieu.php',false);
-   }
- }
+// Checkin What level user has permission to view this page
+ page_require_level(1);
+//  if (isset($_POST['searchs'])) {
+//     $key = addslashes('%'.$_POST['names'].'%');
+//     $keys = $_POST['names'];
+//     $all_kho = find_product_by_kho($key);
+            
+// }
+ $all_kho = find_all('vatlieu');
+ 
 ?>
 <?php include_once('layouts/header.php'); ?>
-
-  <div class="row">
-     <div class="col-md-12">
-       <?php echo display_msg($msg); ?>
-     </div>
-  </div>
-   <div class="row">
-    <div class="col-md-5">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <strong>
-            <span class="glyphicon glyphicon-th"></span>
-            <span>Thêm mới vật tư</span>
-         </strong>
-        </div>
-        <div class="panel-body">
-          <form method="post" action="vatlieu.php">
-            <div class="form-group">
-                <input type="text" class="form-control" name="name" placeholder="Categorie Name">
-            </div>
-            <button type="submit" name="add_cat" class="btn btn-primary">Thêm mới</button>
-        </form>
-        </div>
+<div class="row">
+   <div class="col-md-12">
+     <?php echo display_msg($msg); ?>
+   </div>
+</div>
+<!-- <div class="row">
+  <div class="col-md-12">
+    <form action="" method="POST" accept-charset="utf-8">
+  
+       <div class="input-group">
+            <input type="text" value="<?php if(isset($key)) { echo $keys; } ?>" name="names" class="form-control" placeholder="Nhập tên sản phẩm..">
+            <span class="input-group-btn">
+                <button class="btn btn-default" name="searchs" type="submit">Tìm kiếm</button>
+            </span>
+          </div>
       </div>
-    </div>
-    <div class="col-md-7">
+    </form>
+</div> -->
+<div class="row">
+  <div class="col-md-12">
     <div class="panel panel-default">
-      <div class="panel-heading">
+      <div class="panel-heading clearfix">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Tất cả vật tư</span>
+          <span>Kho vật tư</span>
        </strong>
+         <a href="nhapXuat.php" class="btn btn-info pull-right">Thêm mới</a>
       </div>
-        <div class="panel-body">
-          <table class="table table-bordered table-striped table-hover">
-            <thead>
-                <tr>
-                    <th class="text-center" style="width: 50px;">#</th>
-                    <th>Vật tư</th>
-                    <th class="text-center" style="width: 100px;"></th>
-                </tr>
-            </thead>
-            <tbody>
-              <?php foreach ($all_vattu as $cat):?>
-                <tr>
-                    <td class="text-center"><?php echo count_id();?></td>
-                    <td><?php echo remove_junk(ucfirst($cat['name'])); ?></td>
-                    <td class="text-center">
-                      <div class="btn-group">
-                        <a href="edit_vatlieu.php?id=<?php echo (int)$cat['id'];?>"  class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
-                          <span class="glyphicon glyphicon-edit"></span>
-                        </a>
-                        <a href="delete_vatlieu.php?id=<?php echo (int)$cat['id'];?>"  class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
-                          <span class="glyphicon glyphicon-trash"></span>
-                        </a>
-                      </div>
-                    </td>
-
-                </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
-       </div>
+      <div class="panel-body">
+          <table class="table table-bordered" id="request">
+           
+              <tr>
+                <th  class="text-center" style="width: 40%;"> Tổng vải (m)</th>
+                <td  class="text-center"> <?php echo remove_junk($all_kho[0]['total_vai']); ?></td>
+              </tr>
+              <tr>
+                <th  class="text-center" style="width: 40%;"> Tổng chỉ (cuộn)</th>
+                <td  class="text-center"> <?php echo remove_junk($all_kho[0]['total_chi']); ?></td>
+              </tr>
+              <tr>
+                <th  class="text-center" style="width: 40%;"> Tổng cúc (chiếc)</th>
+                <td  class="text-center"> <?php echo remove_junk($all_kho[0]['total_cuc']); ?></td>
+              </tr>
+             
+          </tabel>
+        </div>
     </div>
-    </div>
-   </div>
   </div>
+</div>
   <?php include_once('layouts/footer.php'); ?>

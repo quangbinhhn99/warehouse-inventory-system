@@ -6,8 +6,9 @@ page_require_level(1);
 ?>
 <?php
 $supplier = find_all('supplier');
-$vattu = find_all('vattu');
+$vatlieu = find_all('vatlieu');
 
+// echo $vatlieu; die();
 
 ?>
 <?php
@@ -32,6 +33,14 @@ if (isset($_POST['add'])) {
         $query .= "'{$idSupplier}', '{$total_vai}', '{$total_chi}', '{$total_cuc}' ,  '{$gia_vai}', '{$gia_chi}', '{$gia_cuc}', '{$date}', '{$note}' ";
         $query .= ")";
         $result = $db->query($query);
+
+        $vai = $vatlieu[0]['total_vai'] + $total_vai;
+        $chi = $vatlieu[0]['total_chi'] + $total_chi;
+        $cuc = $vatlieu[0]['total_cuc'] + $total_cuc;
+        $query  = "UPDATE vatlieu SET ";
+        $query .= " total_vai ='{$vai}', total_chi='{$chi}', total_cuc='{$cuc}' ";
+        $result = $db->query($query);
+
         if ($result && $db->affected_rows() === 1) {
             //sucess
             $session->msg('s', "Thêm mới thành công! ");

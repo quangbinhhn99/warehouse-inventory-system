@@ -4,7 +4,7 @@
   // Checkin What level user has permission to view this page
   page_require_level(1);
   $group = find_all('product');
-  $tensp = find_all_sp();
+ 
 ?>
 <?php
   if(isset($_POST['add_kho'])){
@@ -12,24 +12,30 @@
    $req_fields = array('name','number');
    validate_fields($req_fields);
 
-   if(empty($errors)){
-      $idPro = remove_junk($db->escape($_POST['name']));
+   if(empty($errors)){ 
+      $idSP = remove_junk($db->escape($_POST['name']));
       $inventory   = remove_junk($db->escape($_POST['number']));
-   
+      $count = count_kho($idSP);
+    
+      if ($count['total']<1) {
         $query = "INSERT INTO kho (";
-        $query .="name,soluong_kho,vai_kho,kho_level";
+        $query .="idSP,inventory";
         $query .=") VALUES (";
-        $query .=" '{$tensp}', '{$tenhang}'";
+        $query .=" '{$idSP}', '{$inventory}'";
         $query .=")";
         if($db->query($query)){
           //sucess
-          $session->msg('s',"Them kho thanh cong! ");
-          redirect('add_kho.php', false);
+          $session->msg('s',"Thêm kho thành công! ");
+          redirect('kho.php', false);
         } else {
           //failed
-          $session->msg('d',' Sorry failed!');
+          $session->msg('d','Failed!');
           redirect('add_kho.php', false);
         }
+      }else{
+ 
+        echo "Đã có sản phẩm trong kho.";
+      }
    } else {
      $session->msg("d", $errors);
       redirect('add_kho.php',false);

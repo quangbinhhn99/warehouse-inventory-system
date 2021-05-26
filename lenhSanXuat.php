@@ -32,12 +32,17 @@ $id = $_GET['id'];
                 <td class="text-center"> <?php echo remove_junk($product['name']); ?></td>
 
               </tr>
+              <tr>
                 <th class="text-center" style="width: 10%;"> Số lượng đặt </th>
-                <td class="text-center"> <?php echo remove_junk($request['number']); ?></td>
+                <td class="text-center"> <?php echo remove_junk($request['number_datHang']); ?></td>
               </tr>
               <tr>
+              <tr>
+                <th class="text-center" style="width: 10%;"> Số lượng cần làm </th>
+                <td class="text-center"> <?php echo remove_junk($request['number']); ?></td>
+              </tr>
               <th class="text-center" style="width: 10%;"> Số lượng hoàn thành </th>
-                <td class="text-center"> <?php echo remove_junk($request['number_finished']); ?></td>
+                <td class="text-center"> <?php echo remove_junk($request['number_finished'] ); ?></td>
               </tr>
               <tr>
               <th class="text-center" style="width: 10%;"> Số lượng còn lại </th>
