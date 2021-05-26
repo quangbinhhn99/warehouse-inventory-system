@@ -19,7 +19,7 @@
     $idPro   = remove_junk($db->escape($_POST['idPro']));
     $pro = find_by_id('product', $idPro);
     $number   = (int)($db->escape($_POST['number']));
-    $number_finished = (int)($db->escape($_POST['number']));
+    $number_finished = (int)($db->escape($_POST['number_finished']));
     $total_vai = $number*$pro['vai'];
     $total_chi = $number*$pro['chi'];
     $total_cuc = $number*$pro['cuc'];
