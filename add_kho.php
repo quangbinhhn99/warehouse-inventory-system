@@ -17,9 +17,9 @@
       $inventory   = remove_junk($db->escape($_POST['number']));
    
         $query = "INSERT INTO kho (";
-        $query .="name,soluong_kho,vai_kho,kho_level";
+        $query .="idSP,inventory";
         $query .=") VALUES (";
-        $query .=" '{$tensp}', '{$tenhang}'";
+        $query .=" '{$idPro}', '{$inventory}'";
         $query .=")";
         if($db->query($query)){
           //sucess
