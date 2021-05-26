@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 24, 2021 at 12:17 PM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.8
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th5 26, 2021 lúc 04:10 AM
+-- Phiên bản máy phục vụ: 10.4.18-MariaDB
+-- Phiên bản PHP: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `oswa_inv4`
+-- Cơ sở dữ liệu: `oswa_inv3`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Cấu trúc bảng cho bảng `categories`
 --
 
 CREATE TABLE `categories` (
@@ -33,7 +33,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `categories`
+-- Đang đổ dữ liệu cho bảng `categories`
 --
 
 INSERT INTO `categories` (`id`, `name`) VALUES
@@ -44,7 +44,7 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kho`
+-- Cấu trúc bảng cho bảng `kho`
 --
 
 CREATE TABLE `kho` (
@@ -54,7 +54,7 @@ CREATE TABLE `kho` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kho`
+-- Đang đổ dữ liệu cho bảng `kho`
 --
 
 INSERT INTO `kho` (`id`, `idSP`, `inventory`) VALUES
@@ -63,7 +63,7 @@ INSERT INTO `kho` (`id`, `idSP`, `inventory`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kho_groups`
+-- Cấu trúc bảng cho bảng `kho_groups`
 --
 
 CREATE TABLE `kho_groups` (
@@ -73,7 +73,7 @@ CREATE TABLE `kho_groups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kho_groups`
+-- Đang đổ dữ liệu cho bảng `kho_groups`
 --
 
 INSERT INTO `kho_groups` (`id`, `group_kho`, `group_level`) VALUES
@@ -82,7 +82,7 @@ INSERT INTO `kho_groups` (`id`, `group_kho`, `group_level`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `media`
+-- Cấu trúc bảng cho bảng `media`
 --
 
 CREATE TABLE `media` (
@@ -94,7 +94,7 @@ CREATE TABLE `media` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `plansupply`
+-- Cấu trúc bảng cho bảng `plansupply`
 --
 
 CREATE TABLE `plansupply` (
@@ -109,7 +109,7 @@ CREATE TABLE `plansupply` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Cấu trúc bảng cho bảng `product`
 --
 
 CREATE TABLE `product` (
@@ -123,7 +123,7 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `product`
+-- Đang đổ dữ liệu cho bảng `product`
 --
 
 INSERT INTO `product` (`id`, `idLoai`, `name`, `chi`, `vai`, `cuc`, `status`) VALUES
@@ -136,11 +136,12 @@ INSERT INTO `product` (`id`, `idLoai`, `name`, `chi`, `vai`, `cuc`, `status`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `requestproduct`
+-- Cấu trúc bảng cho bảng `requestproduct`
 --
 
 CREATE TABLE `requestproduct` (
   `id` int(11) NOT NULL,
+  `sku` varchar(25) NOT NULL,
   `idPro` int(11) NOT NULL,
   `number` int(11) NOT NULL,
   `number_finished` int(11) NOT NULL,
@@ -154,19 +155,18 @@ CREATE TABLE `requestproduct` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `requestproduct`
+-- Đang đổ dữ liệu cho bảng `requestproduct`
 --
 
-INSERT INTO `requestproduct` (`id`, `idPro`, `number`, `number_finished`, `total_chi`, `total_vai`, `total_cuc`, `dateStart`, `dateEnd`, `status`, `note`) VALUES
-(1, 1, 100, 100, 1000, 1000, 500, '2021-05-23', '2021-05-31', 1, 'làm nhanh'),
-(2, 4, 10, 0, 50, 50, 20, '2021-05-01', '2021-05-31', 0, ''),
-(3, 2, 120, 120, 600, 600, 0, '2021-05-01', '2021-05-21', 1, 'oke'),
-(4, 3, 39, 0, 195, 195, 78, '2021-05-01', '2021-05-22', 2, '');
+INSERT INTO `requestproduct` (`id`, `sku`, `idPro`, `number`, `number_finished`, `total_chi`, `total_vai`, `total_cuc`, `dateStart`, `dateEnd`, `status`, `note`) VALUES
+(5, 'HB124', 1, 100, 0, 1000, 1000, 500, '2021-05-23', '2021-05-23', 0, ''),
+(6, 'HJD723', 5, 128, 0, 1280, 896, 640, '2021-05-20', '2021-05-26', 0, ''),
+(7, 'NHG782', 1, 119, 0, 1190, 1190, 595, '2021-05-18', '2021-05-31', 0, 'Áo lớp ');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sales`
+-- Cấu trúc bảng cho bảng `sales`
 --
 
 CREATE TABLE `sales` (
@@ -180,7 +180,7 @@ CREATE TABLE `sales` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `users`
 --
 
 CREATE TABLE `users` (
@@ -191,25 +191,22 @@ CREATE TABLE `users` (
   `user_level` int(11) NOT NULL,
   `image` varchar(255) DEFAULT 'no_image.jpg',
   `status` int(1) NOT NULL,
-  `last_login` datetime DEFAULT NULL,
-  `so_cmt` int(150) NOT NULL,
-  `que_quan` varchar(100) NOT NULL,
-  `salary` int(150) NOT NULL
+  `last_login` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `password`, `user_level`, `image`, `status`, `last_login`, `so_cmt`, `que_quan`, `salary`) VALUES
-(1, 'Hieu', 'Admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'no_image.jpg', 1, '2021-05-24 06:12:31', 123456789, 'Nghe An', 8000000),
-(2, 'Bích', 'Special', 'ba36b97a41e7faf742ab09bf88405ac04f99599a', 2, 'no_image.jpg', 1, '2021-05-23 16:21:11', 987654258, 'Thái Bình', 7000000),
-(7, 'Bình', 'quangbinh', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1, 'no_image.jpg', 1, '2021-05-24 06:06:48', 1445635845, 'Thanh hóa', 6500000);
+INSERT INTO `users` (`id`, `name`, `username`, `password`, `user_level`, `image`, `status`, `last_login`) VALUES
+(1, ' Admin User', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'no_image.jpg', 1, '2021-05-25 15:49:57'),
+(2, 'Special User', 'special', 'ba36b97a41e7faf742ab09bf88405ac04f99599a', 2, 'no_image.jpg', 1, '2015-09-27 21:59:59'),
+(3, 'Default User', 'user', '12dea96fec20593566ab75692c9949596833adc9', 3, 'no_image.jpg', 1, '2021-05-23 16:20:24');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_groups`
+-- Cấu trúc bảng cho bảng `user_groups`
 --
 
 CREATE TABLE `user_groups` (
@@ -220,17 +217,18 @@ CREATE TABLE `user_groups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user_groups`
+-- Đang đổ dữ liệu cho bảng `user_groups`
 --
 
 INSERT INTO `user_groups` (`id`, `group_name`, `group_level`, `group_status`) VALUES
-(1, 'Quan ly', 1, 0),
-(2, 'Nhan vien', 2, 1);
+(1, 'Admin', 1, 0),
+(2, 'special', 2, 1),
+(3, 'User', 3, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vattu`
+-- Cấu trúc bảng cho bảng `vattu`
 --
 
 CREATE TABLE `vattu` (
@@ -239,7 +237,7 @@ CREATE TABLE `vattu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `vattu`
+-- Đang đổ dữ liệu cho bảng `vattu`
 --
 
 INSERT INTO `vattu` (`id`, `name`) VALUES
@@ -254,7 +252,7 @@ INSERT INTO `vattu` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vattu_groups`
+-- Cấu trúc bảng cho bảng `vattu_groups`
 --
 
 CREATE TABLE `vattu_groups` (
@@ -264,7 +262,7 @@ CREATE TABLE `vattu_groups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `vattu_groups`
+-- Đang đổ dữ liệu cho bảng `vattu_groups`
 --
 
 INSERT INTO `vattu_groups` (`id`, `group_vattu`, `group_level`) VALUES
@@ -275,7 +273,7 @@ INSERT INTO `vattu_groups` (`id`, `group_vattu`, `group_level`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vattu_product`
+-- Cấu trúc bảng cho bảng `vattu_product`
 --
 
 CREATE TABLE `vattu_product` (
@@ -284,7 +282,7 @@ CREATE TABLE `vattu_product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `vattu_product`
+-- Đang đổ dữ liệu cho bảng `vattu_product`
 --
 
 INSERT INTO `vattu_product` (`idVattu`, `idProduct`) VALUES
@@ -293,174 +291,187 @@ INSERT INTO `vattu_product` (`idVattu`, `idProduct`) VALUES
 (2, 1);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `categories`
+-- Chỉ mục cho bảng `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `kho`
+-- Chỉ mục cho bảng `kho`
 --
 ALTER TABLE `kho`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idSP` (`idSP`);
 
 --
--- Indexes for table `media`
+-- Chỉ mục cho bảng `media`
 --
 ALTER TABLE `media`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
 
 --
--- Indexes for table `plansupply`
+-- Chỉ mục cho bảng `plansupply`
 --
 ALTER TABLE `plansupply`
   ADD KEY `id` (`id`);
 
 --
--- Indexes for table `product`
+-- Chỉ mục cho bảng `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idLoai` (`idLoai`);
 
 --
--- Indexes for table `requestproduct`
+-- Chỉ mục cho bảng `requestproduct`
 --
 ALTER TABLE `requestproduct`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idPro` (`idPro`);
 
 --
--- Indexes for table `sales`
+-- Chỉ mục cho bảng `sales`
 --
 ALTER TABLE `sales`
   ADD PRIMARY KEY (`id`),
   ADD KEY `product_id` (`product_id`);
 
 --
--- Indexes for table `users`
+-- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_level` (`user_level`);
 
 --
--- Indexes for table `user_groups`
+-- Chỉ mục cho bảng `user_groups`
 --
 ALTER TABLE `user_groups`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `group_level` (`group_level`);
 
 --
--- Indexes for table `vattu`
+-- Chỉ mục cho bảng `vattu`
 --
 ALTER TABLE `vattu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `vattu_product`
+-- Chỉ mục cho bảng `vattu_product`
 --
 ALTER TABLE `vattu_product`
   ADD KEY `idVattu` (`idVattu`),
   ADD KEY `idProduct` (`idProduct`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `kho`
+-- AUTO_INCREMENT cho bảng `kho`
 --
 ALTER TABLE `kho`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `media`
+-- AUTO_INCREMENT cho bảng `media`
 --
 ALTER TABLE `media`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `product`
+-- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `requestproduct`
+-- AUTO_INCREMENT cho bảng `requestproduct`
 --
 ALTER TABLE `requestproduct`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `sales`
+-- AUTO_INCREMENT cho bảng `sales`
 --
 ALTER TABLE `sales`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `user_groups`
+-- AUTO_INCREMENT cho bảng `user_groups`
 --
 ALTER TABLE `user_groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `vattu`
+-- AUTO_INCREMENT cho bảng `vattu`
 --
 ALTER TABLE `vattu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `kho`
+-- Các ràng buộc cho bảng `kho`
 --
 ALTER TABLE `kho`
   ADD CONSTRAINT `idSP` FOREIGN KEY (`idSP`) REFERENCES `product` (`id`);
 
 --
--- Constraints for table `plansupply`
+-- Các ràng buộc cho bảng `plansupply`
 --
 ALTER TABLE `plansupply`
   ADD CONSTRAINT `id` FOREIGN KEY (`id`) REFERENCES `requestproduct` (`id`);
 
 --
--- Constraints for table `product`
+-- Các ràng buộc cho bảng `product`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `idLoai` FOREIGN KEY (`idLoai`) REFERENCES `categories` (`id`);
 
 --
--- Constraints for table `requestproduct`
+-- Các ràng buộc cho bảng `requestproduct`
 --
 ALTER TABLE `requestproduct`
   ADD CONSTRAINT `idPro` FOREIGN KEY (`idPro`) REFERENCES `product` (`id`);
 
 --
--- Constraints for table `users`
+-- Các ràng buộc cho bảng `sales`
+--
+ALTER TABLE `sales`
+  ADD CONSTRAINT `SK` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `FK_user` FOREIGN KEY (`user_level`) REFERENCES `user_groups` (`group_level`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `vattu_product`
+--
+ALTER TABLE `vattu_product`
+  ADD CONSTRAINT `idProduct` FOREIGN KEY (`idProduct`) REFERENCES `product` (`id`),
+  ADD CONSTRAINT `idVattu` FOREIGN KEY (`idVattu`) REFERENCES `vattu` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
