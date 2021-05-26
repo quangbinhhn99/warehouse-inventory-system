@@ -12,7 +12,7 @@
 |
 |
 */
-  define( 'DB_HOST', 'http://db.ptitfinancial.me/' );  
+  define( 'DB_HOST', 'http://db.ptitfinancial.me' );  
   define( 'DB_PORT', '3346' );         // Set database host
   define( 'DB_USER', 'root' );             // Set database user
   define( 'DB_PASS', 'root' );             // Set database password
