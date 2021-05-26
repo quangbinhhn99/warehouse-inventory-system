@@ -36,6 +36,25 @@ function find_by_id($table,$id)
             return null;
      }
 }
+
+
+function find_by_name_request($name){
+  global $db;
+  $p_name = remove_junk($db->escape($name));
+  $sql = "SELECT DISTINCT * FROM requestproduct WHERE requestproduct.sku like '%$p_name%'";
+  $result = find_by_sql($sql);
+  return $result;
+}
+
+function find_by_name_product($name){
+  global $db;
+  $p_name = remove_junk($db->escape($name));
+  $sql = "SELECT * FROM product WHERE name like '%$p_name%'";
+  $result = find_by_sql($sql);
+  return $result;
+}
+
+
 /*--------------------------------------------------------------*/
 /* Function for Delete data from table by id
 /*--------------------------------------------------------------*/
@@ -63,6 +82,27 @@ function count_by_id($table){
     $result = $db->query($sql);
      return($db->fetch_assoc($result));
   }
+}
+
+
+function total_product($table){
+  global $db;
+  if(tableExists($table))
+  {
+    $sql    = "SELECT SUM(number) AS total FROM ".$db->escape($table) ;
+    $result = $db->query($sql);
+     return($db->fetch_assoc($result));
+  }
+}
+
+
+function count_by_status($status){
+  global $db;
+
+    $sql    = "SELECT COUNT(id) AS total FROM requestproduct WHERE status=" .$db->escape($status);
+    $result = $db->query($sql);
+     return($db->fetch_assoc($result));
+  
 }
 /*--------------------------------------------------------------*/
 /* Determine if database table exists
@@ -301,7 +341,7 @@ function find_all_kho(){
  /*--------------------------------------------------------------*/
  function find_higest_saleing_product($limit){
    global $db;
-   $sql  = "SELECT p.name, COUNT(s.product_id) AS totalSold, SUM(s.qty) AS totalQty";
+   $sql  = "SELECT p.name, COUNT(s.id) AS totalSold, SUM(s.qty) AS totalQty";
    $sql .= " FROM sales s";
    $sql .= " LEFT JOIN products p ON p.id = s.product_id ";
    $sql .= " GROUP BY s.product_id";

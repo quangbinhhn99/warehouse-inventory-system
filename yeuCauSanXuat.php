@@ -3,8 +3,15 @@ $page_title = 'All Product';
 require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 //    page_require_level(2);
-$request = find_all('requestproduct');
+if(isset($_POST['search'])){
+  $keySearch = $_POST['keySearch'];
+  // echo $keySearch; die();
+  $request = find_by_name_request($keySearch);
+}else{
+  
+  $request = find_all('requestproduct');
 
+}
 ?>
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
@@ -21,6 +28,18 @@ $request = find_all('requestproduct');
           <a href="add_request.php" class="btn btn-primary">Thêm mới</a>
         </div>
       </div>
+
+      <form method="post" >
+        <div class="input-group" style="width:50%; margin: 20px 20px">
+          <input type="text" class="form-control" name="keySearch" placeholder="Mã đơn yêu cầu ..." value="<?php if(isset($keySearch) && $keySearch != null) echo $keySearch;?>">
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit" name="search">
+              <i class="glyphicon glyphicon-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
       <div class="panel-body">
         <table class="table table-bordered" id="request">
           <thead>
@@ -41,31 +60,24 @@ $request = find_all('requestproduct');
           <tbody>
             <?php $i = 1;
             foreach ($request as $data) :
-            $today = strtotime(date('Y/m/d'));
-           
-            if($today > strtotime($data['dateEnd'])){
-              $stt = "<p style='color:red;'>Quá hạn hoàn thành!</p>";
-            }
-             ?>
+
+            ?>
               <tr>
                 <?php $product = find_by_id('product', $data['idPro']) ?>
                 <td class="text-center"><?php echo $i;
                                         $i++ ?></td>
-                <td class="text-center"> <?php echo remove_junk($data['id']); ?></td>
+                <td class="text-center"> <?php echo remove_junk($data['sku']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($product['name']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($data['number']); ?></td>
                 <td class="text-center"> <?php echo read_date($data['dateStart']); ?></td>
                 <td class="text-center"> <?php echo read_date($data['dateEnd']); ?></td>
-                <td class="text-center"> <?php  
-                                          if(isset($stt) && $stt!=null && $data['status']<2){
-                                            echo $stt;
-                                            $stt = null;
-                                            }
-                                            else{
-                                              if ($data['status'] == 0) echo 'Đã tiếp nhận';
+                <td class="text-center"> <?php
+
+                                          if ($data['status'] == 0) echo 'Đã tiếp nhận';
                                           else if ($data['status'] == 1) echo "Đang thực hiện";
                                           else if ($data['status' == 2]) echo "Đã hoàn thành";
-                                            }?></td>
+                                          else if ($data['status' == 3]) echo "Đã huỷ";
+                                          ?></td>
                 <td class="text-center"> <?php echo remove_junk($data['note']); ?></td>
                 <td class="text-center">
                   <div class="btn-group">

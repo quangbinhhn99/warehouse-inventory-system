@@ -9,16 +9,15 @@
 <?php
   if(isset($_POST['add_kho'])){
 
-   $req_fields = array('tensp','full-name','username');
+   $req_fields = array('name','number');
    validate_fields($req_fields);
 
    if(empty($errors)){
-      $tensp = remove_junk($db->escape($_POST['tensp']));
-      $tenhang   = remove_junk($db->escape($_POST['full-name']));
-       $vatpham   = remove_junk($db->escape($_POST['username']));
-      
+      $idPro = remove_junk($db->escape($_POST['name']));
+      $inventory   = remove_junk($db->escape($_POST['number']));
+   
         $query = "INSERT INTO kho (";
-        $query .="ten_sp,soluong_kho,vai_kho,kho_level";
+        $query .="name,soluong_kho,vai_kho,kho_level";
         $query .=") VALUES (";
         $query .=" '{$tensp}', '{$tenhang}', '{$vatpham}',1";
         $query .=")";
@@ -53,7 +52,7 @@
             
               <div class="form-group">
               <label for="tensp">Tên sản phẩm</label>
-                <select class="form-control" name="tensp">
+                <select class="form-control" name="name">
                   <?php foreach ($group as $data ):?>
                    <option value="<?php echo $data['name'];?>"><?php echo ucwords($data['name']);?></option>
                 <?php endforeach;?>
@@ -61,7 +60,7 @@
             </div>
             <div class="form-group">
                 <label for="name">Số lượng tồn kho</label>
-                <input type="text" class="form-control" name="full-name" placeholder="">
+                <input type="text" class="form-control" name="number" placeholder="">
             </div>
            
             <div class="form-group clearfix">

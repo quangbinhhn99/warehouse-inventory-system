@@ -1,6 +1,6 @@
 <ul>
   <li>
-    <a href="admin.php">
+    <a href="home.php">
       <i class="glyphicon glyphicon-home"></i>
       <span>Dashboard</span>
     </a>
@@ -81,10 +81,8 @@
     </a>
     <ul class="nav submenu">
       <li><a href="yeuCauSanXuat.php">Yêu cầu sản xuất</a> </li>
-      <li><a href="vattu_group.php">Giao hàng</a> </li>
-      <li><a href="vattu.php">Kế hoạch vật tư</a> </li>
-      <li><a href="vattu.php">Lệnh sản xuất</a> </li>
-      <li><a href="vattu.php">Yêu câu mua hàng</a> </li>
+      <li><a href="DSKeHoachVatTu.php">Kế hoạch vật tư</a> </li>
+      <li><a href="DSLenhSanXuat.php">Lệnh sản xuất</a> </li>
     </ul>
   </li>
 </ul>

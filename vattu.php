@@ -1,14 +1,20 @@
 <?php
   $page_title = 'All User';
   require_once('includes/load.php');
+  page_require_level(1);
+
+  if(isset($_POST['search'])){
+    $keySearch = $_POST['keySearch'];
+    // echo $keySearch; die();
+    $all_vattu = find_by_name_product($keySearch);
+  }else{
+    
+    $all_vattu = find_all('product');
+  
+  }
+  
 ?>
-<?php
-// Checkin What level user has permission to view this page
- page_require_level(1);
-//pull out all user form database
- $all_vattu = find_all('product');
- 
-?>
+
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
    <div class="col-md-12">
@@ -25,6 +31,16 @@
        </strong>
          <a href="add_vattu.php" class="btn btn-info pull-right">Thêm mới +</a>
       </div>
+      <form method="post" >
+        <div class="input-group" style="width:50%; margin: 20px 20px">
+          <input type="text" class="form-control" name="keySearch" placeholder="Mã đơn yêu cầu ..." value="<?php if(isset($keySearch) && $keySearch != null) echo $keySearch;?>">
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit" name="search">
+              <i class="glyphicon glyphicon-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
      <div class="panel-body">
       <table class="table table-bordered table-striped">
         <thead>
