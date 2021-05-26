@@ -12,9 +12,9 @@
 |
 |
 */
-  define( 'DB_HOST', 'localhost' );          // Set database host
+  define( 'DB_HOST', '139.180.186.119:3346' );          // Set database host
   define( 'DB_USER', 'root' );             // Set database user
-  define( 'DB_PASS', '' );             // Set database password
+  define( 'DB_PASS', 'root' );             // Set database password
   define( 'DB_NAME', 'oswa_inv6' );        // Set database name
 
 ?>
