@@ -36,10 +36,10 @@
   <li>
     <a href="#" class="submenu-toggle">
       <i class="glyphicon glyphicon-signal"></i>
-      <span>Báo cáo kinh doanh</span>
+      <span>Báo cáo</span>
     </a>
     <ul class="nav submenu">
-      <li><a href="sales_report.php">Sales by dates </a></li>
+      <li><a href="sales_report.php">Báo cáo nhập xuất </a></li>
       <li><a href="monthly_sales.php">Monthly sales</a></li>
       <li><a href="daily_sales.php">Daily sales</a> </li>
     </ul>
@@ -72,6 +72,12 @@
     </a>
     <ul class="nav submenu">
       <li><a href="kho.php"> Kho</a> </li>
+    </ul>
+    <ul class="nav submenu">
+      <li><a href="supplier.php">Nhà cung cấp</a> </li>
+    </ul>
+    <ul class="nav submenu">
+      <li><a href="nhapXuat.php">Phiếu nhập/xuất</a> </li>
     </ul>
   </li>
   <li>

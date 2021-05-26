@@ -13,7 +13,7 @@
 <?php
   if(isset($_POST['update'])){
 
-   $req_fields = array('idPro','number','number_finished', 'status', 'note' );
+   $req_fields = array('idPro','number','number_finished', 'status' );
    validate_fields($req_fields);
    if(empty($errors)){
     $idPro   = remove_junk($db->escape($_POST['idPro']));
@@ -84,7 +84,7 @@
         </div>
         <div class="form-group">
               <label for="number" class="control-label">Cúc (chiếc):</label>
-              <input readonly value="<?php echo (int)$e_group['total_cuc']; ?>">
+              <input readonly class="form-control" value="<?php echo (int)$e_group['total_cuc']; ?>">
         </div>
       
         <div class="form-group">
