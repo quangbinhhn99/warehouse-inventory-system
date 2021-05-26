@@ -86,11 +86,11 @@ $stt4 = count_by_status('3');
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge"><?php echo $stt1['total']; ?></div>
-                                        <div>Đã xác nhận!</div>
+                                        <div>Đã tiếp nhận!</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="thongke.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -112,7 +112,7 @@ $stt4 = count_by_status('3');
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="thongke1.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -134,7 +134,7 @@ $stt4 = count_by_status('3');
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="thongke2.php">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

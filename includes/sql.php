@@ -38,6 +38,7 @@ function find_by_id($table,$id)
 }
 
 
+
 function find_by_name_request($name){
   global $db;
   $p_name = remove_junk($db->escape($name));
@@ -190,6 +191,27 @@ function tableExists($table){
       }
     return $current_user;
   }
+  function find_by_status(){
+  global $db;
+      $results = array();
+      $sql = "SELECT * FROM requestproduct WHERE requestproduct.status=0";
+      $result = find_by_sql($sql);
+      return $result;
+}
+  function find_by_status1(){
+  global $db;
+      $results = array();
+      $sql = "SELECT * FROM requestproduct WHERE requestproduct.status=1";
+      $result = find_by_sql($sql);
+      return $result;
+}
+  function find_by_status2(){
+  global $db;
+      $results = array();
+      $sql = "SELECT * FROM requestproduct WHERE requestproduct.status=2";
+      $result = find_by_sql($sql);
+      return $result;
+}
  function find_all_sp(){
       global $db;
       $results = array();
